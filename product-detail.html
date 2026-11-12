@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ceramic Vase Set - Minimal Style | Mini Shop</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2316a34a'><path d='M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h6v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS Module theo cấu trúc khung chung -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/detail.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. THANH MENU TRÊN CÙNG (DÙNG LẠI TỪ KHUNG CHUNG)
+  ======================================================================== -->
+  <header id="site-header" class="site-header" data-active="products">
+    <div class="container header-container">
+      <!-- Brand Logo -->
+      <a href="index.html" class="header-brand" aria-label="Trang chủ Mini Shop">
+        <span class="brand-icon">
+          <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+            <path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h6v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z"/>
+          </svg>
+        </span>
+        <span class="brand-name">Mini Shop</span>
+      </a>
+
+      <!-- Menu chuyển trang Desktop -->
+      <nav class="header-nav" aria-label="Menu chính">
+        <a href="index.html" class="nav-link" data-nav="home">Home</a>
+        <a href="products.html" class="nav-link active" data-nav="products">Products</a>
+        <a href="about.html" class="nav-link" data-nav="about">About</a>
+        <a href="contact.html" class="nav-link" data-nav="contact">Contact</a>
+      </nav>
+
+      <!-- Nhóm hành động: Tìm kiếm & Auth -->
+      <div class="header-actions">
+        <form class="header-search" role="search" onsubmit="event.preventDefault(); MiniShopSearch(this);">
+          <input type="search" class="search-input" placeholder="Search products..." aria-label="Tìm kiếm sản phẩm">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </form>
+
+        <div class="auth-group">
+          <a href="login.html" class="btn btn-outline-blue">Login</a>
+          <a href="register.html" class="btn btn-blue">Register</a>
+          <a href="admin.html" class="btn btn-outline-green">Admin</a>
+        </div>
+      </div>
+
+      <!-- Nút mở menu trên điện thoại -->
+      <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Mở menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div class="mobile-drawer-content">
+        <form class="mobile-search" role="search" onsubmit="event.preventDefault(); MiniShopSearch(this);">
+          <input type="search" class="search-input" placeholder="Search products..." aria-label="Tìm kiếm sản phẩm">
+        </form>
+
+        <nav class="mobile-nav-links">
+          <a href="index.html" class="mobile-nav-link" data-nav="home">Home</a>
+          <a href="products.html" class="mobile-nav-link active" data-nav="products">Products</a>
+          <a href="about.html" class="mobile-nav-link" data-nav="about">About</a>
+          <a href="contact.html" class="mobile-nav-link" data-nav="contact">Contact</a>
+        </nav>
+
+        <div class="mobile-actions">
+          <a href="login.html" class="btn btn-outline-blue">Login</a>
+          <a href="register.html" class="btn btn-blue">Register</a>
+          <a href="admin.html" class="btn btn-outline-green">Admin</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ========================================================================
+       NỘI DUNG CHÍNH TRANG CHI TIẾT SẢN PHẨM (PRODUCT DETAIL)
+  ======================================================================== -->
+  <main class="product-detail-page">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Đường dẫn trang">
+        <a href="index.html" class="breadcrumb-link">Home</a>
+        <span class="breadcrumb-separator">&gt;</span>
+        <a href="products.html" class="breadcrumb-link" id="breadcrumbCategory">Decor</a>
+        <span class="breadcrumb-separator">&gt;</span>
+        <span class="breadcrumb-current" id="breadcrumbTitle">Ceramic Vase Set - Minimal Style</span>
+      </nav>
+
+      <!-- Khung trưng bày sản phẩm 3 phần (Thư viện ảnh, Thông tin lõi, Bảng chi tiết & Giao hàng) -->
+      <div class="product-showcase-grid">
+
+        <!-- 1. THƯ VIỆN HÌNH ẢNH (GALLERY) -->
+        <div class="product-gallery-wrap">
+          <!-- Danh sách Thumbnail dọc bên trái -->
+          <div class="gallery-thumbs-list" id="galleryThumbs">
+            <button type="button" class="thumb-item active" data-img="assets/images/products/do-my-nghe/bo-binh-gom-minimal.webp" aria-label="Ảnh 1">
+              <img src="assets/images/products/do-my-nghe/bo-binh-gom-minimal.webp" alt="Bộ bình gốm góc chính">
+            </button>
+            <button type="button" class="thumb-item" data-img="assets/images/products/do-my-nghe/binh-gom-trang-tri.webp" aria-label="Ảnh 2">
+              <img src="assets/images/products/do-my-nghe/binh-gom-trang-tri.webp" alt="Bình gốm xanh nhạt">
+            </button>
+            <button type="button" class="thumb-item" data-img="assets/images/products/do-my-nghe/bo-binh-gom-thu-cong.webp" aria-label="Ảnh 3">
+              <img src="assets/images/products/do-my-nghe/bo-binh-gom-thu-cong.webp" alt="Bình gốm kẻ sọc vân nổi">
+            </button>
+            <button type="button" class="thumb-item" data-img="assets/images/products/San_pham/binh-gom-trang-tri-original.webp" aria-label="Ảnh 4">
+              <img src="assets/images/products/San_pham/binh-gom-trang-tri-original.webp" alt="Bình gốm mộc tròn">
+            </button>
+            <button type="button" class="thumb-item" data-img="assets/images/products/San_pham/hero-home-decor-pexels-original.webp" aria-label="Ảnh 5">
+              <img src="assets/images/products/San_pham/hero-home-decor-pexels-original.webp" alt="Góc bài trí gốm trong không gian">
+            </button>
+          </div>
+
+          <!-- Khung ảnh lớn trung tâm -->
+          <div class="gallery-main-view">
+            <img src="assets/images/products/do-my-nghe/bo-binh-gom-minimal.webp" alt="Ceramic Vase Set - Minimal Style" class="gallery-main-img" id="mainProductImage">
+          </div>
+        </div>
+
+        <!-- 2. THÔNG TIN SẢN PHẨM & MUA HÀNG (CORE INFO) -->
+        <div class="product-core-info">
+          <!-- Badges trạng thái -->
+          <div class="product-badges-row">
+            <span class="tag-stock" id="productStockBadge">In Stock</span>
+            <span class="tag-category" id="productCategoryBadge">Home Decor</span>
+          </div>
+
+          <!-- Tên sản phẩm -->
+          <h1 class="detail-product-title" id="productTitle">Ceramic Vase Set - Minimal Style</h1>
+
+          <!-- Đánh giá sao -->
+          <div class="product-rating-row">
+            <div class="rating-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <span class="rating-count-text">(48 reviews)</span>
+          </div>
+
+          <!-- Mức giá & Giảm giá -->
+          <div class="detail-price-box">
+            <span class="detail-current-price" id="productPrice">499.000đ</span>
+            <span class="detail-old-price" id="productOldPrice">699.000đ</span>
+            <span class="detail-discount-tag" id="productDiscountTag">-29%</span>
+          </div>
+
+          <!-- Đoạn mô tả ngắn -->
+          <p class="detail-description" id="productDesc">
+            Elegant ceramic vase set perfect for modern home decoration. Bộ bình gốm sứ mộc mạc thủ công cao cấp, tạo cảm giác thư thái và tinh tế cho không gian tổ ấm.
+          </p>
+
+          <!-- Chọn số lượng -->
+          <div class="detail-purchase-row">
+            <div class="quantity-control">
+              <span class="quantity-label">Quantity:</span>
+              <div class="quantity-box">
+                <button type="button" class="qty-btn" id="qtyMinus" aria-label="Giảm số lượng">-</button>
+                <input type="number" class="qty-input" id="qtyInput" value="1" min="1" aria-label="Số lượng sản phẩm">
+                <button type="button" class="qty-btn" id="qtyPlus" aria-label="Tăng số lượng">+</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nút bấm hành động (Add to Cart & Wishlist) -->
+          <div class="detail-cta-row">
+            <button type="button" class="btn-add-cart" id="btnAddToCart">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              <span>Add to cart</span>
+            </button>
+
+            <button type="button" class="btn-detail-wishlist" id="btnDetailWishlist">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+              <span>Wishlist</span>
+            </button>
+          </div>
+
+          <!-- Cam kết dịch vụ (3 thẻ) -->
+          <div class="detail-trust-list">
+            <div class="trust-item">
+              <div class="trust-icon-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                <span>Free Delivery</span>
+              </div>
+              <span class="trust-subtext">Orders over 500.000đ</span>
+            </div>
+
+            <div class="trust-item">
+              <div class="trust-icon-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                <span>30-Day Returns</span>
+              </div>
+              <span class="trust-subtext">Easy returns &amp; refunds</span>
+            </div>
+
+            <div class="trust-item">
+              <div class="trust-icon-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                <span>Secure Payment</span>
+              </div>
+              <span class="trust-subtext">100% secure checkout</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. BẢNG THÔNG SỐ VÀ VẬN CHUYỂN (SIDE PANELS) -->
+        <aside class="detail-side-panels">
+          <!-- Khung: DETAIL -->
+          <div class="spec-card">
+            <h2 class="spec-card-title">Detail</h2>
+            <table class="spec-table">
+              <tbody>
+                <tr>
+                  <td class="spec-label">Material</td>
+                  <td class="spec-value" id="specMaterial">Ceramic</td>
+                </tr>
+                <tr>
+                  <td class="spec-label">Color</td>
+                  <td class="spec-value" id="specColor">Beige, Green, White</td>
+                </tr>
+                <tr>
+                  <td class="spec-label">Dimensions</td>
+                  <td class="spec-value" id="specDimensions">Tall: 20cm, Medium: 15cm, Small: 10cm</td>
+                </tr>
+                <tr>
+                  <td class="spec-label">Weight</td>
+                  <td class="spec-value" id="specWeight">1.2 kg (set)</td>
+                </tr>
+                <tr>
+                  <td class="spec-label">Made in</td>
+                  <td class="spec-value" id="specOrigin">Vietnam</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Khung: DELIVERY -->
+          <div class="spec-card">
+            <h2 class="spec-card-title">Delivery</h2>
+            <div class="delivery-points-list">
+              <div class="delivery-point-item">
+                Delivery time: <strong>2–5 working days</strong>
+              </div>
+              <div class="delivery-point-item">
+                Express delivery: <strong>1–2 working days</strong>
+              </div>
+              <div class="delivery-point-item">
+                Shipping fee: <strong>30.000đ</strong>
+              </div>
+            </div>
+            <a href="contact.html" class="link-delivery-more">View more delivery info</a>
+          </div>
+        </aside>
+
+      </div>
+
+      <!-- ====================================================================
+           4. SẢN PHẨM LIÊN QUAN (RELATED PRODUCTS)
+      ==================================================================== -->
+      <section class="related-section">
+        <div class="related-header">
+          <h2 class="related-title">Related Products</h2>
+          <div class="related-nav-btns">
+            <button type="button" class="btn-nav-slider" id="btnPrevRelated" aria-label="Xem sản phẩm trước">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button type="button" class="btn-nav-slider" id="btnNextRelated" aria-label="Xem sản phẩm kế">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Hàng 5 sản phẩm liên quan theo mẫu mockup -->
+        <div class="related-products-row" id="relatedProductsRow">
+
+          <!-- Item 1: Khay gỗ hoa văn (Wood Wall Decor / Clock) -->
+          <a href="product-detail.html?id=khay-go-hoa-van" class="related-card">
+            <div class="related-card-img-wrap">
+              <img src="assets/images/products/do-thu-cong/khay-go-hoa-van.webp" alt="Khay gỗ hoa văn" loading="lazy">
+            </div>
+            <div class="related-card-info">
+              <h3 class="related-card-name" title="Khay gỗ hoa văn">Khay gỗ hoa văn</h3>
+              <div class="related-card-price">240.000đ</div>
+              <div class="related-card-rating">
+                <span class="stars">
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </span>
+                <span>(35)</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Item 2: Tranh treo Macrame -->
+          <a href="product-detail.html?id=tranh-macrame" class="related-card">
+            <div class="related-card-img-wrap">
+              <img src="assets/images/products/do-thu-cong/tranh-treo-macrame.webp" alt="Tranh treo Macrame" loading="lazy">
+            </div>
+            <div class="related-card-info">
+              <h3 class="related-card-name" title="Tranh treo Macrame">Tranh treo Macrame</h3>
+              <div class="related-card-price">350.000đ</div>
+              <div class="related-card-rating">
+                <span class="stars">
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </span>
+                <span>(22)</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Item 3: Đèn thả trần Minimal -->
+          <a href="product-detail.html?id=den-tha-minimal" class="related-card">
+            <div class="related-card-img-wrap">
+              <img src="assets/images/products/do-my-nghe/den-tre-thu-cong.webp" alt="Đèn tre thủ công" loading="lazy">
+            </div>
+            <div class="related-card-info">
+              <h3 class="related-card-name" title="Đèn thả trần Minimal">Đèn thả trần Minimal</h3>
+              <div class="related-card-price">599.000đ</div>
+              <div class="related-card-rating">
+                <span class="stars">
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </span>
+                <span>(18)</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Item 4: Chậu cây gốm để bàn -->
+          <a href="product-detail.html?id=chau-cay-de-ban" class="related-card">
+            <div class="related-card-img-wrap">
+              <img src="assets/images/products/noi-that-gia-dung/chau-cay-de-ban.webp" alt="Chậu cây gốm để bàn" loading="lazy">
+            </div>
+            <div class="related-card-info">
+              <h3 class="related-card-name" title="Chậu cây gốm để bàn">Chậu cây để bàn</h3>
+              <div class="related-card-price">185.000đ</div>
+              <div class="related-card-rating">
+                <span class="stars">
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </span>
+                <span>(31)</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Item 5: Bình gốm Decor -->
+          <a href="product-detail.html?id=binh-gom-decor" class="related-card">
+            <div class="related-card-img-wrap">
+              <img src="assets/images/products/do-my-nghe/binh-gom-trang-tri.webp" alt="Bình gốm Decor" loading="lazy">
+            </div>
+            <div class="related-card-info">
+              <h3 class="related-card-name" title="Bình gốm Decor">Bình gốm Decor</h3>
+              <div class="related-card-price">290.000đ</div>
+              <div class="related-card-rating">
+                <span class="stars">
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </span>
+                <span>(27)</span>
+              </div>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+
+  <!-- ========================================================================
+       5. CHÂN TRANG (DÙNG LẠI TỪ KHUNG CHUNG)
+  ======================================================================== -->
+  <footer id="site-footer" class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <!-- Cột 1: Thông tin thương hiệu & mạng xã hội -->
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" aria-label="Mini Shop">
+            <span class="brand-icon">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                <path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h6v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z"/>
+              </svg>
+            </span>
+            <span class="brand-name">Mini Shop</span>
+          </a>
+          <p class="footer-desc">Đồ dùng &amp; trang trí cho cuộc sống tiện nghi và phong cách.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-1.01-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Cột 2: Thông tin -->
+        <div class="footer-column">
+          <h3 class="footer-column-title">Thông tin</h3>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">Về chúng tôi</a></li>
+            <li><a href="#" class="footer-link">Chính sách bảo mật</a></li>
+            <li><a href="#" class="footer-link">Điều khoản sử dụng</a></li>
+            <li><a href="#" class="footer-link">Chính sách đổi trả</a></li>
+          </ul>
+        </div>
+
+        <!-- Cột 3: Hỗ trợ khách hàng -->
+        <div class="footer-column">
+          <h3 class="footer-column-title">Hỗ trợ khách hàng</h3>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">Hướng dẫn mua hàng</a></li>
+            <li><a href="#" class="footer-link">Thanh toán &amp; giao hàng</a></li>
+            <li><a href="#" class="footer-link">Bảo hành &amp; đổi trả</a></li>
+            <li><a href="#" class="footer-link">Câu hỏi thường gặp</a></li>
+          </ul>
+        </div>
+
+        <!-- Cột 4: Liên hệ -->
+        <div class="footer-column">
+          <h3 class="footer-column-title">Liên hệ</h3>
+          <ul class="footer-contact-list">
+            <li class="contact-item">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>Hà Nội, Việt Nam</span>
+            </li>
+            <li class="contact-item">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              <span>0123 456 789</span>
+            </li>
+            <li class="contact-item">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span>support@minishop.vn</span>
+            </li>
+            <li class="contact-item">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>08:00 - 21:00 (T2 - CN)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bản quyền chân trang -->
+      <div class="footer-bottom">
+        <p class="copyright-text">&copy; 2025 Mini Shop. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/components.js"></script>
+  <script src="js/detail.js"></script>
+</body>
+</html>
+

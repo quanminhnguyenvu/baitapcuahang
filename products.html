@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Shop - Products</title>
+  
+  <!-- Favicon giỏ hàng xanh -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2316a34a'><path d='M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h6v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS Module theo cấu trúc khung chung -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/products.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. THANH MENU TRÊN CÙNG (DÙNG LẠI TỪ KHUNG CHUNG)
+       Tự động đánh dấu active mục "Products"
+  ======================================================================== -->
+  <header id="site-header" class="site-header" data-active="products">
+    <div class="container header-container">
+      <!-- Brand Logo -->
+      <a href="index.html" class="header-brand" aria-label="Trang chủ Mini Shop">
+        <span class="brand-icon">
+          <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+            <path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h6v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z"/>
+          </svg>
+        </span>
+        <span class="brand-name">Mini Shop</span>
+      </a>
+
+      <!-- Menu chuyển trang Desktop -->
+      <nav class="header-nav" aria-label="Menu chính">
+        <a href="index.html" class="nav-link" data-nav="home">Home</a>
+        <a href="products.html" class="nav-link active" data-nav="products">Products</a>
+        <a href="about.html" class="nav-link" data-nav="about">About</a>
+        <a href="contact.html" class="nav-link" data-nav="contact">Contact</a>
+      </nav>
+
+      <!-- Nhóm hành động: Tìm kiếm & Auth -->
+      <div class="header-actions">
+        <form class="header-search" role="search" onsubmit="event.preventDefault(); MiniShopSearch(this);">
+          <input type="search" class="search-input" placeholder="Search products..." aria-label="Tìm kiếm sản phẩm">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </form>
+
+        <div class="auth-group">
+          <a href="login.html" class="btn btn-outline-blue">Login</a>
+          <a href="register.html" class="btn btn-blue">Register</a>
+          <a href="admin.html" class="btn btn-outline-green">Admin</a>
+        </div>
+      </div>
+
+      <!-- Nút mở menu trên điện thoại -->
+      <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Mở menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div class="mobile-drawer-content">
+        <form class="mobile-search" role="search" onsubmit="event.preventDefault(); MiniShopSearch(this);">
+          <input type="search" class="search-input" placeholder="Search products..." aria-label="Tìm kiếm sản phẩm">
+        </form>
+
+        <nav class="mobile-nav-links">
+          <a href="index.html" class="mobile-nav-link" data-nav="home">Home</a>
+          <a href="products.html" class="mobile-nav-link active" data-nav="products">Products</a>
+          <a href="about.html" class="mobile-nav-link" data-nav="about">About</a>
+          <a href="contact.html" class="mobile-nav-link" data-nav="contact">Contact</a>
+        </nav>
+
+        <div class="mobile-actions">
+          <a href="login.html" class="btn btn-outline-blue">Login</a>
+          <a href="register.html" class="btn btn-blue">Register</a>
+          <a href="admin.html" class="btn btn-outline-green">Admin</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ========================================================================
+       NỘI DUNG CHÍNH TRANG DANH SÁCH SẢN PHẨM (PRODUCTS)
+  ======================================================================== -->
+  <main class="products-page">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Đường dẫn trang">
+        <a href="index.html" class="breadcrumb-link">Home</a>
+        <span class="breadcrumb-separator">&gt;</span>
+        <span class="breadcrumb-current">Products</span>
+      </nav>
+
+      <!-- Bố cục 2 cột: Sidebar lọc bên trái & Lưới sản phẩm bên phải -->
+      <div class="products-layout">
+
+        <!-- 1. BỘ LỌC BÊN TRÁI (FILTER SIDEBAR) -->
+        <aside class="filter-sidebar" aria-label="Bộ lọc sản phẩm">
+          <!-- Nhóm: Categories -->
+          <div class="filter-group">
+            <div class="filter-group-header">
+              <h2 class="filter-group-title">Categories</h2>
+            </div>
+            <div class="category-filter-list" role="tablist" aria-label="Bộ lọc danh mục">
+              <!-- Tất cả -->
+              <button type="button" class="category-filter-item active" data-cat="all">
+                <span class="category-item-content">
+                  <svg class="category-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                  </svg>
+                  <span>Tất cả</span>
+                </span>
+                <span class="category-filter-count" id="count-all">16</span>
+              </button>
+
+              <!-- Nội thất -->
+              <button type="button" class="category-filter-item" data-cat="noi-that">
+                <span class="category-item-content">
+                  <svg class="category-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 9V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2"></path>
+                    <path d="M2 11a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-5z"></path>
+                    <path d="M4 18v2M20 18v2"></path>
+                  </svg>
+                  <span>Nội thất</span>
+                </span>
+                <span class="category-filter-count" id="count-noi-that">4</span>
+              </button>
+
+              <!-- Trang trí -->
+              <button type="button" class="category-filter-item" data-cat="trang-tri">
+                <span class="category-item-content">
+                  <svg class="category-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  <span>Trang trí</span>
+                </span>
+                <span class="category-filter-count" id="count-trang-tri">9</span>
+              </button>
+
+              <!-- Nhà bếp -->
+              <button type="button" class="category-filter-item" data-cat="nha-bep">
+                <span class="category-item-content">
+                  <svg class="category-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 2v20M6 2v6a3 3 0 0 0 6 0V2M9 11v11"></path>
+                  </svg>
+                  <span>Nhà bếp</span>
+                </span>
+                <span class="category-filter-count" id="count-nha-bep">4</span>
+              </button>
+
+              <!-- Đèn -->
+              <button type="button" class="category-filter-item" data-cat="den">
+                <span class="category-item-content">
+                  <svg class="category-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18h6M10 22h4M12 2v1"></path>
+                    <path d="M12 7a5 5 0 0 1 5 5c0 2-1.5 3-2 4H9c-.5-1-2-2-2-4a5 5 0 0 1 5-5z"></path>
+                  </svg>
+                  <span>Đèn</span>
+                </span>
+                <span class="category-filter-count" id="count-den">2</span>
+              </button>
+
+              <!-- Văn phòng -->
+              <button type="button" class="category-filter-item" data-cat="van-phong">
+                <span class="category-item-content">
+                  <svg class="category-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                  <span>Văn phòng</span>
+                </span>
+                <span class="category-filter-count" id="count-van-phong">2</span>
+              </button>
+
+              <!-- Lưu trữ -->
+              <button type="button" class="category-filter-item" data-cat="luu-tru">
+                <span class="category-item-content">
+                  <svg class="category-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="21 8 21 21 3 21 3 8"></polyline>
+                    <rect x="1" y="3" width="22" height="5"></rect>
+                    <line x1="10" y1="12" x2="14" y2="12"></line>
+                  </svg>
+                  <span>Lưu trữ</span>
+                </span>
+                <span class="category-filter-count" id="count-luu-tru">4</span>
+              </button>
+
+              <!-- Khác -->
+              <button type="button" class="category-filter-item" data-cat="khac">
+                <span class="category-item-content">
+                  <svg class="category-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                  </svg>
+                  <span>Khác</span>
+                </span>
+                <span class="category-filter-count" id="count-khac">3</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Nhóm: Price (Khoảng giá định dạng VND) -->
+          <div class="filter-group">
+            <div class="filter-group-header">
+              <h2 class="filter-group-title">Price</h2>
+              <svg class="filter-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
+            <div class="filter-options">
+              <label class="filter-option-label">
+                <input type="radio" name="price_range" value="all" checked>
+                <span>All Price</span>
+              </label>
+              <label class="filter-option-label">
+                <input type="radio" name="price_range" value="under-300k">
+                <span>Dưới 300.000đ</span>
+                <span class="filter-option-count">5</span>
+              </label>
+              <label class="filter-option-label">
+                <input type="radio" name="price_range" value="300k-1m">
+                <span>300.000đ - 1.000.000đ</span>
+                <span class="filter-option-count">7</span>
+              </label>
+              <label class="filter-option-label">
+                <input type="radio" name="price_range" value="1m-3m">
+                <span>1.000.000đ - 3.000.000đ</span>
+                <span class="filter-option-count">2</span>
+              </label>
+              <label class="filter-option-label">
+                <input type="radio" name="price_range" value="over-3m">
+                <span>Trên 3.000.000đ</span>
+                <span class="filter-option-count">2</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Nhóm: Availability (Tình trạng kho) -->
+          <div class="filter-group">
+            <div class="filter-group-header">
+              <h2 class="filter-group-title">Availability</h2>
+              <svg class="filter-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
+            <div class="filter-options">
+              <label class="filter-option-label">
+                <input type="checkbox" name="in_stock" checked id="filterInStock">
+                <span>In stock</span>
+                <span class="filter-option-count">16</span>
+              </label>
+            </div>
+          </div>
+        </aside>
+
+        <!-- 2. KHU VỰC HIỂN THỊ SẢN PHẨM (PRODUCTS MAIN) -->
+        <section class="products-main">
+          <!-- Thanh tiêu đề & Công cụ điều khiển -->
+          <div class="products-header-bar">
+            <div class="products-title-wrap">
+              <h1>Products</h1>
+              <p class="products-count-text" id="productsCountText">Showing 1–16 of 16 products</p>
+            </div>
+
+            <div class="products-controls">
+              <!-- Ô tìm kiếm trong danh mục -->
+              <div class="products-search-box">
+                <input type="search" class="products-search-input" id="catalogSearchInput" placeholder="Tìm theo tên sản phẩm..." aria-label="Tìm kiếm theo tên sản phẩm">
+                <button type="button" class="btn-clear-search" id="btnClearSearch" aria-label="Xóa tìm kiếm" style="display: none;">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
+                <svg class="products-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </div>
+
+              <!-- Menu chọn thứ tự sắp xếp -->
+              <select class="sort-select" id="sortSelect" aria-label="Sắp xếp sản phẩm">
+                <option value="newest">Sort by: Newest</option>
+                <option value="price-asc">Giá: Thấp đến Cao</option>
+                <option value="price-desc">Giá: Cao đến Thấp</option>
+                <option value="popular">Bán chạy nhất</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Lưới 4 cột hiển thị tất cả sản phẩm (Ảnh thật từ assets, kiểu thẻ như trang chủ) -->
+          <div class="products-catalog-grid" id="catalogGrid">
+
+            <!-- Card 1: Sofa 2 chỗ Nordic -->
+            <article class="product-card" data-cat="all noi-that living-room" data-price="2990000" data-id="1">
+              <div class="product-image-wrap">
+                <span class="badge-tag badge-new">New</span>
+                <button type="button" class="btn-wishlist" aria-label="Yêu thích">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+                <img src="assets/images/products/noi-that-gia-dung/sofa-phong-khach.webp" alt="Sofa 2 chỗ Nordic" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <h3 class="product-name" title="Sofa 2 chỗ Nordic">Sofa 2 chỗ Nordic</h3>
+                <div class="product-card-prices">
+                  <span class="product-card-price">2.990.000đ</span>
+                </div>
+                <div class="stock-status-wrap">
+                  <span class="stock-status">In stock</span>
+                </div>
+                <p class="product-desc">Thiết kế tối giản, êm ái</p>
+                <div class="product-card-footer">
+                  <a href="product-detail.html?id=sofa-nordic" class="btn-card-action">
+                    <span>Xem chi tiết</span>
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2: Bàn ăn gỗ Sồi -->
+            <article class="product-card" data-cat="all noi-that living-room nha-bep kitchen" data-price="3490000" data-id="2">
+              <div class="product-image-wrap">
+                <span class="badge-tag badge-new">New</span>
+                <button type="button" class="btn-wishlist" aria-label="Yêu thích">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+                <img src="assets/images/products/noi-that-gia-dung/bo-ban-an-go.webp" alt="Bàn ăn gỗ Sồi" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <h3 class="product-name" title="Bàn ăn gỗ Sồi">Bàn ăn gỗ Sồi</h3>
+                <div class="product-card-prices">
+                  <span class="product-card-price">3.490.000đ</span>
+                </div>
+                <div class="stock-status-wrap">
+                  <span class="stock-status">In stock</span>
+                </div>
+                <p class="product-desc">Gỗ sồi tự nhiên, bền đẹp</p>
+                <div class="product-card-footer">
+                  <a href="product-detail.html?id=ban-an-go-soi" class="btn-card-action">
+                    <span>Xem chi tiết</span>
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3: Đèn thả trần Minimal -->
+            <article class="product-card" data-cat="all den lighting trang-tri decor" data-price="599000" data-id="3">
+              <div class="product-image-wrap">
+                <span class="badge-tag badge-sale">-15%</span>
+                <button type="button" class="btn-wishlist" aria-label="Yêu thích">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+                <img src="assets/images/products/do-my-nghe/den-tre-thu-cong.webp" alt="Đèn thả trần Minimal" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <h3 class="product-name" title="Đèn thả trần Minimal">Đèn thả trần Minimal</h3>
+                <div class="product-card-prices">
+                  <span class="product-card-price">599.000đ</span>
+                  <span class="product-price-old">705.000đ</span>
+                </div>
+                <div class="stock-status-wrap">
+                  <span class="stock-status">In stock</span>
+                </div>
+                <p class="product-desc">Ánh sáng dịu nhẹ, tinh tế</p>
+                <div class="product-card-footer">
+                  <a href="product-detail.html?id=den-tha-minimal" class="btn-card-action">
+                    <span>Xem chi tiết</span>
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 4: Bình gốm Decor -->
+            <article class="product-card" data-cat="all trang-tri decor noi-that living-room" data-price="290000" data-id="4">
+              <div class="product-image-wrap">
+                <span class="badge-tag badge-new">New</span>
+                <button type="button" class="btn-wishlist" aria-label="Yêu thích">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+                <img src="assets/images/products/do-my-nghe/binh-gom-trang-tri.webp" alt="Bình gốm Decor" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <h3 class="product-name" title="Bình gốm Decor">Bình gốm Decor</h3>
+                <div class="product-card-prices">
+                  <span class="product-card-price">290.000đ</span>
+                </div>
+                <div class="stock-status-wrap">
+                  <span class="stock-status">In stock</span>
+                </div>
+                <p class="product-desc">Gốm sứ cao cấp, trang nhã</p>
+                <div class="product-card-footer">
+                  <a href="product-detail.html?id=binh-gom-decor" class="btn-card-action">
+                    <span>Xem chi tiết</span>
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 5: Kệ gỗ đa năng -->
+            <article class="product-card" data-cat="all noi-that living-room luu-tru storage van-phong" data-price="1293000" data-id="5">
+              <div class="product-image-wrap">
+                <button type="button" class="btn-wishlist" aria-label="Yêu thích">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+                <img src="assets/images/products/noi-that-gia-dung/ke-go-trang-tri.webp" alt="Kệ gỗ đa năng" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <h3 class="product-name" title="Kệ gỗ đa năng">Kệ gỗ đa năng</h3>
+                <div class="product-card-prices">
+                  <span class="product-card-price">1.293.000đ</span>
+                </div>
+                <div class="stock-status-wrap">
+                  <span class="stock-status">In stock</span>
+                </div>
+                <p class="product-desc">Tiết kiệm không gian</p>
+                <div class="product-card-footer">
+                  <a href="product-detail.html?id=ke-go-da-nang" class="btn-card-action">
+                    <span>Xem chi tiết</span>
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 6: Giỏ mây lưu trữ -->
+            <article class="product-card" data-cat="all luu-tru storage trang-tri decor" data-price="199000" data-id="6">
+              <div class="product-image-wrap">
+                <button type="button" class="btn-wishlist" aria-label="Yêu thích">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+                <img src="assets/images/products/do-thu-cong/gio-may-dan.webp" alt="Giỏ mây lưu trữ" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <h3 class="product-name" title="Giỏ mây lưu trữ">Giỏ mây lưu trữ</h3>
+                <div class="product-card-prices">
+                  <span class="product-card-price">199.000đ</span>
+                </div>
+                <div class="stock-status-wrap">
+                  <span class="stock-status">In stock</span>
+                </div>
+                <p class="product-desc">Thân thiện, tiện dụng</p>
+                <div class="product-card-footer">
+                  <a href="product-detail.html?id=gio-may-luu-tru" class="btn-card-action">
+                    <span>Xem chi tiết</span>
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 7: Tranh treo Macrame -->
+            <article class="product-card" data-cat="all trang-tri decor noi-that living-room" data-price="350000" data-id="7">
+              <div class="product-image-wrap">
+                <span class="badge-tag badge-new">New</span>
+                <button type="button" class="btn-wishlist" aria-label="Yêu thích">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+                <img src="assets/images/products/do-thu-cong/tranh-treo-macrame.webp" alt="Tranh treo Macrame" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <h3 class="product-name" title="Tranh treo Macrame">Tranh treo Macrame</h3>
+                <div class="product-card-prices">
+                  <span class="product-card-price">350.000đ</span>
+                </div>
+                <div class="stock-status-wrap">
+                  <span class="stock-status">In stock</span>
+                </div>
+                <p class="product-desc">Sợi cotton tự nhiên, đan tay tinh xảo</p>
+                <div class="product-card-footer">
+                  <a href="product-detail.html?id=tranh-macrame" class="btn-card-action">
+                    <span>Xem chi tiết</span>
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 8: Khay gỗ hoa văn -->
+            <article class="product-card" data-cat="all nha-bep kitchen trang-tri decor" data-price="240000" data-id="8">
+              <div class="product-image-wrap">
+                <button type="button" class="btn-wishlist" aria-label="Yêu thích">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+                <img src="assets/images/products/do-thu-cong/khay-go-hoa-van.webp" alt="Khay gỗ hoa văn" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <h3 class="product-name" title="Khay gỗ hoa văn">Khay gỗ hoa văn</h3>
+                <div class="product-card-prices">
+                  <span class="product-card-price">240.000đ</span>
+                </div>
+                <div class="stock-status-wrap">
+                  <span class="stock-status">In stock</span>
+                </div>
+                <p class="product-desc">Gỗ tần bì chạm khắc vintage</p>
+                <div class="product-card-footer">
+                  <a href="product-detail.html?id=khay-go-hoa-van" class="btn-card-action">
+                    <span>Xem chi tiết</span>
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 9: Khay gỗ trang trí mộc -->
+            <article class="product-card" data-cat="all nha-bep kitchen trang-tri decor" data-price="220000" data-id="9">
+              <div class="product-image-wrap">
+                <button type="button" class="btn-wishlist" aria-label="Yêu thích">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+                <img src="assets/images/products/do-thu-cong/khay-go-trang-tri.webp" alt="Khay gỗ trang trí mộc" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <h3 class="product-name" title="Khay gỗ trang trí mộc">Khay gỗ mộc tiện dụng</h3>
+                <div class="product-card-prices">
+                  <span class="product-card-price">220.000đ</span>
+                </div>
+                <div class="stock-status-wrap">
+                  <span class="stock-status">In stock</span>
+                </div>
+                <p class="product-desc">Phong cách mộc mạc, tiện dụng</p>
+                <div class="product-card-footer">
+                  <a href="product-detail.html?id=khay-go-moc" class="btn-card-action">
+                    <span>Xem chi tiết</span>
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 10: Đèn lồng tre nghệ thuật -->
+            <article class="product-card" data-cat="all den lighting trang-tri decor" data-price="480000" data-id="10">
+              <div class="product-image-wrap">
+                <button type="button" class="btn-wishlist" aria-label="Yêu thích">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+                <img src="assets/images/products/do-my-nghe/den-long-tre.webp" alt="Đèn lồng tre thủ công" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <h3 class="product-name" title="Đèn lồng tre nghệ thuật">Đèn lồng tre thủ công</h3>
+                <div class="product-card-prices">
+                  <span class="product-card-price">480.000đ</span>
+                </div>
+                <div class="stock-status-wrap">
+                  <span class="stock-status">In stock</span>
+                </div>
+                <p class="product-desc">Nan tre uốn thủ công truyền thống</p>
+                <div class="product-card-footer">
+                  <a href="product-detail.html?id=den-long-tre" class="btn-card-action">
+                    <span>Xem chi tiết</span>
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 11: Chậu cây gốm để bàn -->
+            <article class="product-card" data-cat="all trang-tri decor noi-that living-room van-phong" data-price="185000" data-id="11">
+              <div class="product-image-wrap">
+                <button type="button" class="btn-wishlist" aria-label="Yêu thích">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+                <img src="assets/images/products/noi-that-gia-dung/chau-cay-de-ban.webp" alt="Chậu cây để bàn" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <h3 class="product-name" title="Chậu cây để bàn">Chậu cây gốm để bàn</h3>
+                <div class="product-card-prices">
+                  <span class="product-card-price">185.000đ</span>
+                </div>
+                <div class="stock-status-wrap">
+                  <span class="stock-status">In stock</span>
+                </div>
+                <p class="product-desc">Men gốm mờ, kèm đĩa lót gỗ</p>
+                <div class="product-card-footer">
+                  <a href="product-detail.html?id=chau-cay-de-ban" class="btn-card-action">
+                    <span>Xem chi tiết</span>
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 12: Hộp sơn mài cao cấp -->
+            <article class="product-card" data-cat="all luu-tru storage trang-tri decor khac" data-price="650000" data-id="12">
+              <div class="product-image-wrap">
+                <span class="badge-tag badge-new">New</span>
+                <button type="button" class="btn-wishlist" aria-label="Yêu thích">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+                <img src="assets/images/products/do-my-nghe/hop-son-mai.webp" alt="Hộp sơn mài thủ công" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <h3 class="product-name" title="Hộp sơn mài thủ công">Hộp sơn mài cao cấp</h3>
+                <div class="product-card-prices">
+                  <span class="product-card-price">650.000đ</span>
+                </div>
+                <div class="stock-status-wrap">
+                  <span class="stock-status">In stock</span>
+                </div>
+                <p class="product-desc">Kỹ nghệ sơn mài truyền thống</p>
+                <div class="product-card-footer">
+                  <a href="product-detail.html?id=hop-son-mai" class="btn-card-action">
+                    <span>Xem chi tiết</span>
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 13: Bộ đôi bình gốm Minimal -->
+            <article class="product-card" data-cat="all trang-tri decor noi-that living-room" data-price="499000" data-id="13">
+              <div class="product-image-wrap">
+                <span class="badge-tag badge-sale">-29%</span>
+                <button type="button" class="btn-wishlist" aria-label="Yêu thích">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+                <img src="assets/images/products/do-my-nghe/bo-binh-gom-minimal.webp" alt="Bộ đôi bình gốm Minimal" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <h3 class="product-name" title="Bộ đôi bình gốm Minimal">Bộ đôi bình gốm Minimal</h3>
+                <div class="product-card-prices">
+                  <span class="product-card-price">499.000đ</span>
+                  <span class="product-price-old">699.000đ</span>
+                </div>
+                <div class="stock-status-wrap">
+                  <span class="stock-status">In stock</span>
+                </div>
+                <p class="product-desc">Bộ đôi bình gốm mộc tráng men thô</p>
+                <div class="product-card-footer">
+                  <a href="product-detail.html?id=bo-binh-gom-minimal" class="btn-card-action">
+                    <span>Xem chi tiết</span>
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 14: Khay khảm trai thủ công -->
+            <article class="product-card" data-cat="all nha-bep kitchen trang-tri decor khac" data-price="850000" data-id="14">
+              <div class="product-image-wrap">
+                <span class="badge-tag badge-new">New</span>
+                <button type="button" class="btn-wishlist" aria-label="Yêu thích">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+                <img src="assets/images/products/do-my-nghe/khay-kham-trai.webp" alt="Khay khảm trai thủ công" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <h3 class="product-name" title="Khay khảm trai thủ công">Khay khảm trai thủ công</h3>
+                <div class="product-card-prices">
+                  <span class="product-card-price">850.000đ</span>
+                </div>
+                <div class="stock-status-wrap">
+                  <span class="stock-status">In stock</span>
+                </div>
+                <p class="product-desc">Khảm vỏ trai tự nhiên tinh xảo</p>
+                <div class="product-card-footer">
+                  <a href="product-detail.html?id=khay-kham-trai" class="btn-card-action">
+                    <span>Xem chi tiết</span>
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 15: Giỏ mây đan tròn thủ công -->
+            <article class="product-card" data-cat="all luu-tru storage trang-tri decor" data-price="260000" data-id="15">
+              <div class="product-image-wrap">
+                <button type="button" class="btn-wishlist" aria-label="Yêu thích">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+                <img src="assets/images/products/do-my-nghe/gio-may-dan-thu-cong.webp" alt="Giỏ mây đan tròn thủ công" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <h3 class="product-name" title="Giỏ mây đan tròn">Giỏ mây đan tròn</h3>
+                <div class="product-card-prices">
+                  <span class="product-card-price">260.000đ</span>
+                </div>
+                <div class="stock-status-wrap">
+                  <span class="stock-status">In stock</span>
+                </div>
+                <p class="product-desc">Mây tự nhiên xử lý chống ẩm mốc</p>
+                <div class="product-card-footer">
+                  <a href="product-detail.html?id=gio-may-tron" class="btn-card-action">
+                    <span>Xem chi tiết</span>
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 16: Bình gốm vuốt tay mỹ nghệ -->
+            <article class="product-card" data-cat="all trang-tri decor noi-that living-room khac" data-price="520000" data-id="16">
+              <div class="product-image-wrap">
+                <span class="badge-tag badge-new">New</span>
+                <button type="button" class="btn-wishlist" aria-label="Yêu thích">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+                <img src="assets/images/products/do-my-nghe/bo-binh-gom-thu-cong.webp" alt="Bình gốm vuốt tay mỹ nghệ" class="product-img" loading="lazy">
+              </div>
+              <div class="product-info">
+                <h3 class="product-name" title="Bình gốm vuốt tay mỹ nghệ">Bình gốm vuốt tay</h3>
+                <div class="product-card-prices">
+                  <span class="product-card-price">520.000đ</span>
+                </div>
+                <div class="stock-status-wrap">
+                  <span class="stock-status">In stock</span>
+                </div>
+                <p class="product-desc">Nung củi tự nhiên vân men độc bản</p>
+                <div class="product-card-footer">
+                  <a href="product-detail.html?id=binh-gom-vuot-tay" class="btn-card-action">
+                    <span>Xem chi tiết</span>
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Trạng thái trống khi lọc không có kết quả -->
+            <div class="empty-catalog-state" id="emptyCatalogState" style="display: none;">
+              Không tìm thấy sản phẩm nào phù hợp với bộ lọc hiện tại. Vui lòng thử lại với mức giá hoặc danh mục khác!
+            </div>
+
+          </div>
+
+          <!-- Nút Load more phía dưới -->
+          <div class="load-more-wrap">
+            <button type="button" class="btn-load-more" id="btnLoadMore">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+              </svg>
+              <span>Load more</span>
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- ========================================================================
+       3. CHÂN TRANG (DÙNG LẠI TỪ KHUNG CHUNG)
+  ======================================================================== -->
+  <footer id="site-footer" class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <!-- Cột 1: Thông tin thương hiệu & mạng xã hội -->
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" aria-label="Mini Shop">
+            <span class="brand-icon">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                <path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h6v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z"/>
+              </svg>
+            </span>
+            <span class="brand-name">Mini Shop</span>
+          </a>
+          <p class="footer-desc">Đồ dùng &amp; trang trí cho cuộc sống tiện nghi và phong cách.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-1.01-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Cột 2: Thông tin -->
+        <div class="footer-column">
+          <h3 class="footer-column-title">Thông tin</h3>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">Về chúng tôi</a></li>
+            <li><a href="#" class="footer-link">Chính sách bảo mật</a></li>
+            <li><a href="#" class="footer-link">Điều khoản sử dụng</a></li>
+            <li><a href="#" class="footer-link">Chính sách đổi trả</a></li>
+          </ul>
+        </div>
+
+        <!-- Cột 3: Hỗ trợ khách hàng -->
+        <div class="footer-column">
+          <h3 class="footer-column-title">Hỗ trợ khách hàng</h3>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">Hướng dẫn mua hàng</a></li>
+            <li><a href="#" class="footer-link">Thanh toán &amp; giao hàng</a></li>
+            <li><a href="#" class="footer-link">Bảo hành &amp; đổi trả</a></li>
+            <li><a href="#" class="footer-link">Câu hỏi thường gặp</a></li>
+          </ul>
+        </div>
+
+        <!-- Cột 4: Liên hệ -->
+        <div class="footer-column">
+          <h3 class="footer-column-title">Liên hệ</h3>
+          <ul class="footer-contact-list">
+            <li class="contact-item">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>Hà Nội, Việt Nam</span>
+            </li>
+            <li class="contact-item">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              <span>0123 456 789</span>
+            </li>
+            <li class="contact-item">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span>support@minishop.vn</span>
+            </li>
+            <li class="contact-item">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>08:00 - 21:00 (T2 - CN)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bản quyền chân trang -->
+      <div class="footer-bottom">
+        <p class="copyright-text">&copy; 2025 Mini Shop. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/components.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>

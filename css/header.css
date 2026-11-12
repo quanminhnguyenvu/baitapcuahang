@@ -1,0 +1,341 @@
+/* Site Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  gap: 16px;
+}
+
+/* Brand Logo */
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-name {
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: -0.02em;
+}
+
+/* Desktop Navigation Links */
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-left: 12px;
+}
+
+.nav-link {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #4b5563;
+  padding: 6px 0;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: var(--color-primary);
+}
+
+.nav-link.active {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Header Right Group */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+}
+
+/* Search Bar */
+.header-search {
+  position: relative;
+  width: 240px;
+}
+
+.search-input {
+  width: 100%;
+  height: 38px;
+  padding: 8px 36px 8px 14px;
+  font-size: 13.5px;
+  color: var(--color-text-title);
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.search-input::placeholder {
+  color: var(--color-text-light);
+}
+
+.search-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.12);
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-muted);
+  pointer-events: none;
+  width: 16px;
+  height: 16px;
+}
+
+/* Biểu tượng Giỏ hàng trên thanh Header */
+.header-cart-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-text-title);
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.header-cart-btn:hover {
+  color: var(--color-primary);
+  background-color: var(--color-bg-subtle);
+  border-color: var(--color-border-hover);
+}
+
+.header-cart-btn .cart-icon {
+  width: 21px;
+  height: 21px;
+  transition: transform var(--transition-fast);
+}
+
+.header-cart-btn:hover .cart-icon {
+  transform: scale(1.08);
+}
+
+/* Số lượng sản phẩm trên badge giỏ hàng */
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-full);
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(22, 163, 74, 0.4);
+  pointer-events: none;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.cart-badge.bump {
+  animation: cartBadgePop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes cartBadgePop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+.drawer-cart-badge {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+/* Auth & Admin Buttons */
+.auth-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.auth-group .btn {
+  height: 38px;
+  padding: 0 16px;
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+/* Mobile Menu Toggle Button */
+.mobile-menu-btn {
+  display: none;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-title);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: #ffffff;
+}
+
+.mobile-menu-btn:hover {
+  background-color: var(--color-bg-subtle);
+}
+
+/* Mobile Drawer Navigation */
+.mobile-drawer {
+  display: none;
+  position: fixed;
+  top: 72px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-normal);
+}
+
+.mobile-drawer.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-drawer-content {
+  background-color: #ffffff;
+  padding: 20px 24px 30px;
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-dropdown);
+  transform: translateY(-10px);
+  transition: transform var(--transition-normal);
+}
+
+.mobile-drawer.open .mobile-drawer-content {
+  transform: translateY(0);
+}
+
+.mobile-search {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.mobile-search .search-input {
+  width: 100%;
+  height: 42px;
+  font-size: 14px;
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 10px 12px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-title);
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast);
+}
+
+.mobile-nav-link:hover {
+  background-color: var(--color-bg-subtle);
+  color: var(--color-primary);
+}
+
+.mobile-nav-link.active {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.mobile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+.mobile-actions .btn {
+  width: 100%;
+  height: 42px;
+  font-size: 14.5px;
+}
+
+/* Mobile Right Control Group */
+.mobile-header-right {
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 992px) {
+  .header-search {
+    width: 180px;
+  }
+  .header-nav {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 860px) {
+  .header-nav,
+  .header-actions {
+    display: none;
+  }
+  .mobile-header-right {
+    display: flex;
+  }
+  .mobile-menu-btn {
+    display: flex;
+  }
+  .mobile-drawer {
+    display: block;
+  }
+}
