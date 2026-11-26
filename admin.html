@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Shop - Admin Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2316a34a'><path d='M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h6v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="sidebar-brand">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+        <path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h6v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z"/>
+      </svg>
+      <span>Mini Shop</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="sidebar-link active" data-panel="dashboard">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        Dashboard
+      </a>
+      <a href="#" class="sidebar-link" data-panel="products">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        Sản phẩm
+      </a>
+      <a href="#" class="sidebar-link" data-panel="orders">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+        Đơn hàng
+      </a>
+      <a href="#" class="sidebar-link" data-panel="customers">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        Khách hàng
+      </a>
+      <a href="#" class="sidebar-link" data-panel="settings">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        Cài đặt
+      </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <a href="index.html" class="sidebar-link" style="margin-bottom:4px">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        Xem cửa hàng
+      </a>
+      <a href="login.html" class="sidebar-link sidebar-logout" id="adminLogout">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        Đăng xuất
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="admin-main" id="adminMain">
+
+    <!-- TOP BAR -->
+    <header class="admin-topbar">
+      <div class="topbar-left">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Đóng/mở sidebar">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+        <h1 class="topbar-title" id="topbarTitle">Dashboard</h1>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-search">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="search" placeholder="Tìm kiếm..." class="topbar-search-input">
+        </div>
+        <div class="topbar-notif">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          <span class="notif-badge">3</span>
+        </div>
+        <div class="topbar-user">
+          <div class="user-avatar">A</div>
+          <span class="user-name">Admin</span>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- PANEL: DASHBOARD -->
+    <!-- ============================================================ -->
+    <div class="admin-panel active" id="panel-dashboard">
+      <div class="panel-content">
+
+        <!-- Stats cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon products-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            </div>
+            <div class="stat-info">
+              <div class="stat-label">Tổng sản phẩm</div>
+              <div class="stat-value">16</div>
+              <div class="stat-sub">Đang bán trong cửa hàng</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon orders-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+            </div>
+            <div class="stat-info">
+              <div class="stat-label">Đơn hàng hôm nay</div>
+              <div class="stat-value" id="statOrderCount">0</div>
+              <div class="stat-sub stat-up">
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                Từ dữ liệu localStorage
+              </div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon revenue-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
+            <div class="stat-info">
+              <div class="stat-label">Doanh thu (demo)</div>
+              <div class="stat-value" id="statRevenue">42.580.000đ</div>
+              <div class="stat-sub stat-up">
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                +18.6% so với tháng trước
+              </div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon customers-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <div class="stat-info">
+              <div class="stat-label">Khách hàng</div>
+              <div class="stat-value">128</div>
+              <div class="stat-sub stat-up">
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                +12.4% tháng này
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <!-- Biểu đồ doanh thu -->
+          <div class="dashboard-card chart-card">
+            <div class="card-header">
+              <h3>Doanh thu 7 ngày qua</h3>
+              <span class="card-badge green">Cập nhật realtime</span>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="revenueChart" height="200"></canvas>
+            </div>
+            <div class="chart-stats-row">
+              <div class="chart-stat">
+                <div class="chart-stat-label">Tổng doanh thu</div>
+                <div class="chart-stat-value">42.580.000đ</div>
+              </div>
+              <div class="chart-stat">
+                <div class="chart-stat-label">Đơn hàng</div>
+                <div class="chart-stat-value" id="dashOrderTotal">—</div>
+              </div>
+              <div class="chart-stat">
+                <div class="chart-stat-label">Trung bình / đơn</div>
+                <div class="chart-stat-value">332.656đ</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sản phẩm gần đây -->
+          <div class="dashboard-card">
+            <div class="card-header">
+              <h3>Sản phẩm nổi bật</h3>
+              <button class="btn-card-action-sm" onclick="switchPanel('products')">Xem tất cả</button>
+            </div>
+            <table class="mini-table">
+              <thead>
+                <tr>
+                  <th>Sản phẩm</th>
+                  <th>Giá</th>
+                  <th>Trạng thái</th>
+                </tr>
+              </thead>
+              <tbody id="dashProductList">
+                <!-- render bởi JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Đơn hàng gần đây -->
+        <div class="dashboard-card full-width-card">
+          <div class="card-header">
+            <h3>Đơn hàng gần đây</h3>
+            <button class="btn-card-action-sm" onclick="switchPanel('orders')">Xem tất cả</button>
+          </div>
+          <div id="dashRecentOrders">
+            <div class="empty-state-sm">Chưa có đơn hàng nào. Hãy thử đặt hàng từ cửa hàng!</div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end panel-dashboard -->
+
+    <!-- ============================================================ -->
+    <!-- PANEL: SẢN PHẨM -->
+    <!-- ============================================================ -->
+    <div class="admin-panel" id="panel-products">
+      <div class="panel-content">
+        <div class="panel-toolbar">
+          <div class="toolbar-left">
+            <div class="search-box">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="search" placeholder="Tìm sản phẩm..." id="productSearch" class="toolbar-search">
+            </div>
+            <select class="toolbar-select" id="categoryFilter">
+              <option value="">Tất cả danh mục</option>
+              <option value="Nội thất">Nội thất</option>
+              <option value="Gốm sứ">Gốm sứ</option>
+              <option value="Mây tre đan">Mây tre đan</option>
+              <option value="Đồ thủ công">Đồ thủ công</option>
+              <option value="Đồ mỹ nghệ">Đồ mỹ nghệ</option>
+              <option value="Đèn chiếu sáng">Đèn chiếu sáng</option>
+            </select>
+          </div>
+          <button class="btn-primary-admin" id="btnAddProduct">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            Thêm sản phẩm
+          </button>
+        </div>
+
+        <div class="table-card">
+          <table class="admin-table" id="productsTable">
+            <thead>
+              <tr>
+                <th style="width:50px">#</th>
+                <th>Sản phẩm</th>
+                <th>Danh mục</th>
+                <th>Giá</th>
+                <th>Tồn kho</th>
+                <th>Trạng thái</th>
+                <th style="width:120px">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody id="productsTableBody">
+              <!-- Render bởi JS -->
+            </tbody>
+          </table>
+          <div class="table-empty" id="productsEmpty" style="display:none">
+            Không tìm thấy sản phẩm nào.
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end panel-products -->
+
+    <!-- ============================================================ -->
+    <!-- PANEL: ĐƠN HÀNG -->
+    <!-- ============================================================ -->
+    <div class="admin-panel" id="panel-orders">
+      <div class="panel-content">
+        <div class="panel-toolbar">
+          <div class="toolbar-left">
+            <div class="search-box">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="search" placeholder="Tìm đơn hàng..." id="orderSearch" class="toolbar-search">
+            </div>
+            <select class="toolbar-select" id="orderStatusFilter">
+              <option value="">Tất cả trạng thái</option>
+              <option value="pending">Chờ xử lý</option>
+              <option value="confirmed">Đã xác nhận</option>
+              <option value="shipping">Đang giao</option>
+              <option value="done">Hoàn thành</option>
+              <option value="cancelled">Đã hủy</option>
+            </select>
+          </div>
+          <button class="btn-outline-admin" id="btnExportOrders">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Xuất Excel
+          </button>
+        </div>
+
+        <div class="table-card">
+          <table class="admin-table" id="ordersTable">
+            <thead>
+              <tr>
+                <th>Mã đơn</th>
+                <th>Khách hàng</th>
+                <th>Sản phẩm</th>
+                <th>Tổng tiền</th>
+                <th>Thanh toán</th>
+                <th>Trạng thái</th>
+                <th>Thời gian</th>
+                <th style="width:100px">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+              <!-- Render bởi JS -->
+            </tbody>
+          </table>
+          <div class="table-empty" id="ordersEmpty" style="display:none">
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#94a3b8" stroke-width="1.5"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+            <p>Chưa có đơn hàng nào.<br><a href="products.html" target="_blank">Thử đặt hàng từ cửa hàng →</a></p>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end panel-orders -->
+
+    <!-- ============================================================ -->
+    <!-- PANEL: KHÁCH HÀNG -->
+    <!-- ============================================================ -->
+    <div class="admin-panel" id="panel-customers">
+      <div class="panel-content">
+        <div class="dashboard-card">
+          <div class="card-header"><h3>Khách hàng đã đặt hàng</h3></div>
+          <div id="customersContent">
+            <div class="empty-state-sm">Dữ liệu khách hàng được tổng hợp từ đơn hàng.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- PANEL: CÀI ĐẶT -->
+    <!-- ============================================================ -->
+    <div class="admin-panel" id="panel-settings">
+      <div class="panel-content">
+        <div class="dashboard-card">
+          <div class="card-header"><h3>Cài đặt cửa hàng</h3></div>
+          <div class="settings-grid">
+            <div class="form-group">
+              <label class="form-label">Tên cửa hàng</label>
+              <input type="text" class="form-input" value="Mini Shop">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email liên hệ</label>
+              <input type="email" class="form-input" value="support@minishop.vn">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Số điện thoại</label>
+              <input type="tel" class="form-input" value="0123 456 789">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Địa chỉ</label>
+              <input type="text" class="form-input" value="Hà Nội, Việt Nam">
+            </div>
+          </div>
+          <button class="btn-primary-admin" style="margin-top:16px" onclick="showAdminToast('Đã lưu cài đặt!')">Lưu cài đặt</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end admin-main -->
+
+  <!-- MODAL: THÊM / SỬA SẢN PHẨM -->
+  <div class="modal-overlay" id="productModal" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-labelledby="modalProductTitle">
+      <div class="modal-header">
+        <h3 id="modalProductTitle">Thêm sản phẩm</h3>
+        <button class="modal-close" id="closeProductModal">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="productForm" novalidate>
+          <input type="hidden" id="editProductId">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Tên sản phẩm <span class="required">*</span></label>
+              <input type="text" id="pName" class="form-input" placeholder="Tên sản phẩm" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Danh mục <span class="required">*</span></label>
+              <select id="pCategory" class="form-input" required>
+                <option value="">-- Chọn danh mục --</option>
+                <option value="Nội thất">Nội thất</option>
+                <option value="Gốm sứ">Gốm sứ</option>
+                <option value="Mây tre đan">Mây tre đan</option>
+                <option value="Đồ thủ công">Đồ thủ công</option>
+                <option value="Đồ mỹ nghệ">Đồ mỹ nghệ</option>
+                <option value="Đèn chiếu sáng">Đèn chiếu sáng</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Giá bán (đ) <span class="required">*</span></label>
+              <input type="number" id="pPrice" class="form-input" placeholder="299000" required min="0">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tồn kho</label>
+              <input type="number" id="pStock" class="form-input" placeholder="50" min="0" value="50">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mô tả ngắn</label>
+            <textarea id="pDesc" class="form-input form-textarea" placeholder="Mô tả sản phẩm..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Trạng thái</label>
+            <select id="pStatus" class="form-input">
+              <option value="active">Đang bán</option>
+              <option value="hidden">Ẩn</option>
+              <option value="out">Hết hàng</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-outline-admin" id="cancelProductModal">Hủy</button>
+        <button class="btn-primary-admin" id="saveProductBtn">Lưu sản phẩm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: XEM CHI TIẾT ĐƠN HÀNG -->
+  <div class="modal-overlay" id="orderModal" aria-hidden="true">
+    <div class="modal-box modal-lg" role="dialog" aria-labelledby="modalOrderTitle">
+      <div class="modal-header">
+        <h3 id="modalOrderTitle">Chi tiết đơn hàng</h3>
+        <button class="modal-close" id="closeOrderModal">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal-body" id="orderModalBody">
+        <!-- Render bởi JS -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn-outline-admin" id="closeOrderModalBtn">Đóng</button>
+        <select class="form-input" id="orderStatusSelect" style="width:auto;flex:0">
+          <option value="pending">Chờ xử lý</option>
+          <option value="confirmed">Đã xác nhận</option>
+          <option value="shipping">Đang giao</option>
+          <option value="done">Hoàn thành</option>
+          <option value="cancelled">Đã hủy</option>
+        </select>
+        <button class="btn-primary-admin" id="saveOrderStatusBtn">Cập nhật trạng thái</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST ADMIN -->
+  <div id="adminToast" class="admin-toast" aria-live="polite"></div>
+
+  <script src="js/cart.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

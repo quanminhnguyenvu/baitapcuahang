@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/cart.css">
+  <link rel="stylesheet" href="css/wishlist.css">
 </head>
 <body>
 
@@ -63,6 +64,13 @@
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
           </svg>
           <span class="cart-badge" id="cartBadge">0</span>
+        </a>
+
+        <a href="wishlist.html" class="header-wish-btn" aria-label="Yêu thích" title="Xem yêu thích">
+          <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span class="wishlist-badge" id="wishlistHeaderBadge">0</span>
         </a>
 
         <div class="auth-group">
@@ -396,6 +404,7 @@
   <!-- Scripts -->
   <script src="js/components.js"></script>
   <script src="js/cart.js"></script>
+  <script src="js/wishlist.js"></script>
   <script>
     if (typeof initCartPage === 'function') {
       initCartPage();

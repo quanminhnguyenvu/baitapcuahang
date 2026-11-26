@@ -407,3 +407,106 @@
     font-size: 19px;
   }
 }
+
+/* ========================================================
+   PRODUCT CARD ACTION BUTTONS (giỏ hàng + chi tiết + yêu thích)
+   ======================================================== */
+.product-card .product-image-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card .btn-wishlist {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.92);
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s, transform 0.15s;
+  backdrop-filter: blur(4px);
+}
+
+.product-card .btn-wishlist:hover {
+  color: #ef4444;
+  background: #fff;
+  transform: scale(1.1);
+}
+
+.product-card .btn-wishlist.active {
+  color: #ef4444;
+  background: #fff;
+}
+
+.product-card .btn-wishlist.active svg path {
+  fill: #ef4444;
+  stroke: #ef4444;
+}
+
+.product-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-card-cart {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-primary, #16a34a);
+  border: none;
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+  transition: background 0.18s, transform 0.1s;
+  font-family: var(--font-family-base, 'Inter', sans-serif);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.btn-card-cart:hover {
+  background: var(--color-primary-hover, #15803d);
+}
+
+.btn-card-cart:active {
+  transform: scale(0.97);
+}
+
+.btn-card-cart.added {
+  background: #15803d;
+}
+
+.btn-card-detail {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border: 1.5px solid var(--color-border, #e5e7eb);
+  border-radius: var(--radius-md, 8px);
+  color: var(--color-text-body, #374151);
+  background: #fff;
+  text-decoration: none;
+  transition: border-color 0.18s, color 0.18s;
+}
+
+.btn-card-detail:hover {
+  border-color: var(--color-primary, #16a34a);
+  color: var(--color-primary, #16a34a);
+}

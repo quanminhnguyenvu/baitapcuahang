@@ -189,6 +189,64 @@
   border-radius: var(--radius-full);
 }
 
+/* Biểu tượng Yêu thích trên Header */
+.header-wish-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-text-title);
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.header-wish-btn:hover {
+  color: #ef4444;
+  background-color: #fef2f2;
+  border-color: #fca5a5;
+}
+
+.header-wish-btn svg {
+  width: 21px;
+  height: 21px;
+  transition: transform var(--transition-fast);
+}
+
+.header-wish-btn:hover svg {
+  transform: scale(1.1);
+}
+
+/* Badge yêu thích */
+.wishlist-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  font-size: 11px;
+  font-weight: 700;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background-color: #ef4444;
+  border-radius: var(--radius-full);
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4);
+  pointer-events: none;
+}
+
+.wishlist-badge:not([style*="none"]) {
+  display: inline-flex;
+}
+
 /* Auth & Admin Buttons */
 .auth-group {
   display: flex;

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng ký - Mini Shop</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2316a34a'><path d='M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h6v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body class="auth-body">
+
+  <div class="auth-wrapper register-layout">
+
+    <!-- Panel trái: branding -->
+    <div class="auth-brand-panel">
+      <div class="auth-brand-content">
+        <a href="index.html" class="auth-logo">
+          <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor">
+            <path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h6v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z"/>
+          </svg>
+          <span>Mini Shop</span>
+        </a>
+        <h1 class="auth-brand-title">Tạo tài khoản mới</h1>
+        <p class="auth-brand-desc">Tham gia cộng đồng Mini Shop để nhận ưu đãi độc quyền và theo dõi đơn hàng dễ dàng.</p>
+        <div class="auth-brand-benefits">
+          <div class="auth-benefit">✅ Miễn phí tạo tài khoản</div>
+          <div class="auth-benefit">✅ Theo dõi đơn hàng realtime</div>
+          <div class="auth-benefit">✅ Lưu địa chỉ giao hàng</div>
+          <div class="auth-benefit">✅ Nhận ưu đãi thành viên</div>
+        </div>
+      </div>
+      <div class="auth-brand-art">
+        <div class="auth-art-circle c1"></div>
+        <div class="auth-art-circle c2"></div>
+        <div class="auth-art-circle c3"></div>
+      </div>
+    </div>
+
+    <!-- Panel phải: form -->
+    <div class="auth-form-panel">
+      <div class="auth-form-container">
+        <div class="auth-form-header">
+          <a href="index.html" class="auth-back-link">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Về trang chủ
+          </a>
+        </div>
+
+        <h2 class="auth-title">Đăng ký tài khoản</h2>
+        <p class="auth-subtitle">Điền thông tin để tạo tài khoản mới</p>
+
+        <form id="registerForm" class="auth-form" novalidate>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="regFirstName">Họ</label>
+              <input type="text" id="regFirstName" class="form-input" placeholder="Nguyễn" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="regLastName">Tên</label>
+              <input type="text" id="regLastName" class="form-input" placeholder="Văn A" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="regEmail">Email <span class="required">*</span></label>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <input type="email" id="regEmail" name="email" class="form-input with-icon" placeholder="email@example.com" required autocomplete="email">
+            </div>
+            <span class="form-error" id="errRegEmail"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="regPhone">Số điện thoại</label>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <input type="tel" id="regPhone" name="phone" class="form-input with-icon" placeholder="0912 345 678" autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="regPassword">Mật khẩu <span class="required">*</span></label>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <input type="password" id="regPassword" name="password" class="form-input with-icon" placeholder="Tối thiểu 6 ký tự" required>
+              <button type="button" class="toggle-pwd" id="toggleRegPwd">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              </button>
+            </div>
+            <div class="pwd-strength" id="pwdStrength">
+              <div class="pwd-bar" id="pwdBar"></div>
+            </div>
+            <span class="form-error" id="errRegPassword"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="regConfirm">Xác nhận mật khẩu <span class="required">*</span></label>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <input type="password" id="regConfirm" class="form-input with-icon" placeholder="Nhập lại mật khẩu" required>
+            </div>
+            <span class="form-error" id="errRegConfirm"></span>
+          </div>
+
+          <div class="form-check-row">
+            <label class="form-check">
+              <input type="checkbox" id="agreeTerms" required>
+              Tôi đồng ý với <a href="#">Điều khoản dịch vụ</a> và <a href="#">Chính sách bảo mật</a>
+            </label>
+            <span class="form-error" id="errTerms"></span>
+          </div>
+
+          <div class="form-error-global" id="registerError" style="display:none"></div>
+
+          <button type="submit" class="btn-auth" id="btnRegister">
+            <span class="btn-auth-text">Tạo tài khoản</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" y1="8" x2="19" y2="14"></line><line x1="22" y1="11" x2="16" y2="11"></line></svg>
+          </button>
+        </form>
+
+        <p class="auth-switch">Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>

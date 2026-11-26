@@ -592,13 +592,17 @@ function initQuantityControls() {
 function initAddToCart(product) {
   const btnAddCart = document.getElementById('btnAddToCart');
   const qtyInput = document.getElementById('qtyInput');
+  if (!btnAddCart) return;
 
-  if (btnAddCart) {
-    btnAddCart.addEventListener('click', function () {
-      const qty = parseInt(qtyInput?.value || '1', 10);
-      showToast(`Đã thêm ${qty} "${product.title}" vào giỏ hàng thành công!`);
-    });
-  }
+  btnAddCart.addEventListener('click', function () {
+    const qty = parseInt(qtyInput ? qtyInput.value : '1', 10) || 1;
+    const pid = new URLSearchParams(window.location.search).get('id') || 'bo-binh-gom-minimal';
+    if (typeof CartManager !== 'undefined') {
+      CartManager.addItem(pid, qty);
+    } else {
+      showToast('Đã thêm "' + product.title + '" vào giỏ hàng!');
+    }
+  });
 }
 
 /**
@@ -606,13 +610,37 @@ function initAddToCart(product) {
  */
 function initWishlist(product) {
   const btnWishlist = document.getElementById('btnDetailWishlist');
-  if (btnWishlist) {
-    btnWishlist.addEventListener('click', function () {
+  if (!btnWishlist) return;
+  const pid = new URLSearchParams(window.location.search).get('id') || 'bo-binh-gom-minimal';
+
+  if (typeof WishlistManager !== 'undefined' && WishlistManager.isInWishlist(pid)) {
+    btnWishlist.classList.add('active');
+    btnWishlist.setAttribute('aria-pressed', 'true');
+    btnWishlist.setAttribute('title', 'Bỏ yêu thích');
+  }
+
+  btnWishlist.addEventListener('click', function () {
+    if (typeof WishlistManager === 'undefined') {
       this.classList.toggle('active');
       const isSaved = this.classList.contains('active');
-      showToast(isSaved ? `Đã thêm "${product.title}" vào danh sách yêu thích!` : `Đã xóa "${product.title}" khỏi danh sách yêu thích!`);
+      showToast(isSaved ? 'Đã thêm "' + product.title + '" vào yêu thích!' : 'Đã xóa "' + product.title + '" khỏi yêu thích!');
+      return;
+    }
+    const priceStr = (product.price || '').replace(/[^\d]/g, '');
+    WishlistManager.toggleItem({
+      id: pid,
+      name: product.title,
+      price: parseInt(priceStr, 10) || 0,
+      formattedPrice: product.price || '',
+      image: product.image || '',
+      category: product.category || '',
+      detailUrl: 'product-detail.html?id=' + pid
     });
-  }
+    const inList = WishlistManager.isInWishlist(pid);
+    this.classList.toggle('active', inList);
+    this.setAttribute('aria-pressed', String(inList));
+    this.setAttribute('title', inList ? 'Bỏ yêu thích' : 'Thêm vào yêu thích');
+  });
 }
 
 /**
